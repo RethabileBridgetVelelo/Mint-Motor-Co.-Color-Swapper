@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mint & Motor Co. | Dream Rides</title>
+    <style>
+        :root {
+            --bg-color: #f7f9f8;
+            --mint-primary: #e3f4ee;
+            --mint-dark: #a8dad0;
+            --text-dark: #2c3e50;
+            --white: #ffffff;
+            
+            /* Dynamic Car Colors */
+            --car-mint: #b2e4d7;
+            --car-blush: #fbc4c4;
+            --car-lemon: #ffeb99;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            width: 100%;
+            padding: 20px;
+            background-color: var(--white);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+            color: #79bcae;
+            letter-spacing: 1px;
+        }
+
+        .hero-container {
+            max-width: 800px;
+            width: 90%;
+            background: var(--white);
+            margin: 40px 0;
+            padding: 30px;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(168, 218, 208, 0.2);
+            text-align: center;
+        }
+
+        /* The Interactive Showcase Graphic */
+        .car-display {
+            width: 100%;
+            height: 220px;
+            background-color: var(--mint-primary);
+            border-radius: 16px;
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            transition: background-color 0.5s ease;
+        }
+
+        .car-graphic {
+            width: 160px;
+            height: 70px;
+            background-color: var(--car-mint);
+            border-radius: 30px 40px 10px 10px;
+            position: relative;
+            transition: background-color 0.5s ease, transform 0.2s;
+        }
+
+        .car-graphic::before, .car-graphic::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            width: 35px;
+            height: 35px;
+            background-color: #333;
+            border-radius: 50%;
+            border: 4px solid var(--white);
+        }
+
+        .car-graphic::before { left: 20px; }
+        .car-graphic::after { right: 20px; }
+
+        .car-graphic:hover {
+            transform: scale(1.05);
+        }
+
+        /* Color Picker Buttons */
+        .color-picker {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .color-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 3px solid var(--white);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .color-btn:hover {
+            transform: translateY(-4px);
+        }
+
+        .btn-mint { background-color: var(--car-mint); }
+        .btn-blush { background-color: var(--car-blush); }
+        .btn-lemon { background-color: var(--car-lemon); }
+
+        .status-text {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-top: 15px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>✨ Mint & Motor Co. ✨</h1>
+    </header>
+
+    <div class="hero-container">
+        <h2>Customize Your Sweet Ride</h2>
+        <p>Pick a pastel shade that matches your aesthetic perfectly.</p>
+        
+        <div class="car-display" id="display-backdrop">
+            <div class="car-graphic" id="car"></div>
+        </div>
+
+        <p class="status-text">Current Edition: <span id="color-name" style="color: #79bcae; font-weight: bold;">Mint Sorbet</span></p>
+
+        <div class="color-picker">
+            <button class="color-btn btn-mint" onclick="changeColor('#b2e4d7', 'Mint Sorbet', '#e3f4ee')"></button>
+            <button class="color-btn btn-blush" onclick="changeColor('#fbc4c4', 'Blush Macaron', '#ffebeb')"></button>
+            <button class="color-btn btn-lemon" onclick="changeColor('#ffeb99', 'Lemon Chiffon', '#fffbeb')"></button>
+        </div>
+    </div>
+
+    <script>
+        function changeColor(carColor, colorName, backdropColor) {
+            // Change the car body color
+            document.getElementById('car').style.backgroundColor = carColor;
+            
+            // Change the display backdrop for an extra aesthetic pop
+            document.getElementById('display-backdrop').style.backgroundColor = backdropColor;
+            
+            // Update the text label
+            const label = document.getElementById('color-name');
+            label.innerText = colorName;
+            label.style.color = carColor;
+        }
+    </script>
+
+</body>
+</html>
